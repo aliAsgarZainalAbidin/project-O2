@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/btn_beranda"
+        android:enabled="true"
+        android:icon="@drawable/ic_beranda"
+        android:title="Beranda" />
+
+
+    <item
+        android:id="@+id/btn_aktifitas"
+        android:enabled="true"
+        android:icon="@drawable/icon_riwayat"
+        android:title="Aktifitas" />
+
+    <item
+        android:id="@+id/btn_akun"
+        android:enabled="true"
+        android:icon="@drawable/icon_profile"
+        android:title="Akun" />
+
+    <item
+        android:id="@+id/btn_pembayaran"
+        android:enabled="true"
+        android:icon="@drawable/icon_pembayaran"
+        android:title="Pembayaran" />
+
+    <item
+        android:id="@+id/btn_pesan"
+        android:enabled="true"
+        android:icon="@drawable/icon_pesan"
+        android:title="Pesan" />
+
+
+</menu>

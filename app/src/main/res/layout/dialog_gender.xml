@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp">
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/bg_search_map"
+        android:layout_width="match_parent"
+        android:text="Laki - laki"
+        android:layout_marginBottom="4dp"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/bg_search_map"
+        android:layout_width="match_parent"
+        android:text="Perempuan"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

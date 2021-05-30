@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pelanggan.akun.UpdatePelangganActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/foto_profil"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/img_circle" />
+
+    <EditText
+        android:id="@+id/et_nama_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/foto_profil"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/abuabu2"
+        android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+        android:gravity="center"
+        android:text="Nama"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_email_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_nama_update"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@color/abuabu2"
+        android:drawableLeft="@drawable/icon_email"
+        android:gravity="center"
+        android:hint="contoh@gmail.com" />
+
+    <EditText
+        android:id="@+id/et_telpon_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_email_update"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@color/abuabu2"
+        android:drawableLeft="@drawable/phone1"
+        android:gravity="center"
+        android:hint="0853-9752-2451" />
+
+    <EditText
+        android:id="@+id/et_gender_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:hint="Gender"
+        android:gravity="center"
+        android:backgroundTint="@color/abuabu2"
+        android:drawableLeft="@drawable/icon_gender"
+        android:layout_below="@id/et_telpon_update"
+        android:layout_marginHorizontal="16dp" />
+
+    <EditText
+        android:id="@+id/et_alamat_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_gender_update"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@color/abuabu2"
+        android:drawableLeft="@drawable/icon_address"
+        android:gravity="center"
+        android:hint="Alamat" />
+
+    <Button
+        android:layout_above="@id/btn_batal"
+        android:id="@+id/btn_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_btn_ok"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="Ok" />
+
+    <Button
+        android:id="@+id/btn_batal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_input_ket"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="Batal" />
+
+
+</RelativeLayout>

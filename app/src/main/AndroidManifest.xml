@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.needyou.needyou">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_llogo"
+        android:label="@string/app_name"
+        android:hardwareAccelerated="true"
+        android:roundIcon="@mipmap/ic_llogo_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.oa.needyou.pelanggan.akun.UpdatePelangganActivity"></activity>
+        <activity android:name="com.oa.needyou.pekerja.pendapatan.DetailRiwayatActivity" />
+        <activity android:name="com.oa.needyou.pekerja.pendapatan.DetailSibukActivity" />
+        <activity android:name="com.oa.needyou.pekerja.DeliveryPekerjaActivity" />
+        <activity android:name="com.oa.needyou.pelanggan.beranda.DeliveryPelangganActivity"
+            android:hardwareAccelerated="false"/>
+        <activity android:name="com.oa.needyou.SplashScreanActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.oa.needyou.pekerja.dompet.BankDompetActivity" />
+        <activity android:name="com.oa.needyou.pekerja.RegistPekerjaActivity" />
+        <activity android:name="com.oa.needyou.pelanggan.aktivitas.AktifitasPelangganActivity" />
+        <activity android:name="com.oa.needyou.pekerja.LoginPekerjaActivity" />
+        <activity android:name="com.oa.needyou.pekerja.MasukPekerjaActivity" />
+
+        <service
+            android:name="com.oa.needyou.pekerja.service.TrackingService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name="com.oa.needyou.pekerja.OrderanPekerjaActivity" />
+        <activity android:name="com.oa.needyou.pekerja.DashboardPekerjaActivity"
+            android:hardwareAccelerated="false"/>
+        <activity
+            android:name="com.oa.needyou.pelanggan.beranda.OrderActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name="com.oa.needyou.pelanggan.DashboardPelangganActivity" />
+        <activity android:name="com.oa.needyou.pelanggan.LoginPelangganActivity" />
+        <activity android:name="com.oa.needyou.pelanggan.MasukPelangganActivity" />
+        <activity android:name="com.oa.needyou.pelanggan.RegistPelangganActivity" />
+        <activity android:name="com.oa.needyou.MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDCIphcsSEy3PeyI3hCPTfPI4b5EgF_Uuo" />
+    </application>
+
+</manifest>

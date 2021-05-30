@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#A8AFEC</color>
+    <color name="colorPrimaryTrans">#AEA8AFEC</color>
+    <color name="colorPrimaryDark">#7377BB</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="putih">#FFFFFF</color>
+    <color name="ungu">#A7ADFF</color>
+    <color name="hitam">#000000</color>
+    <color name="transparan">#00FFFFFF</color>
+    <color name="bg_trans_alamat">#61FFFFFF</color>
+
+
+    <color name="enter_button_nav">#C700FF</color>
+    <color name="unguGelap">#4F55B1</color>
+    <color name="abuabu">#494949</color>
+    <color name="abuabu2">#D6D6D6</color>
+    <color name="putih_buram">#3BFFFFFF</color>
+    <color name="putih_buram2">#C82E2E2E</color>
+    <color name="singoutColor">#FF4545</color>
+    <color name="merah">#FF0000</color>
+    <color name="duskYellow">#FFA400</color>
+    <color name="lightGrey">#7E7E7E</color>
+
+
+</resources>

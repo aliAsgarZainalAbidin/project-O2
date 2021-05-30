@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btn_beranda_pekerja"
+        android:enabled="true"
+        android:icon="@drawable/ic_beranda"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/btn_pendapatan"
+        android:enabled="true"
+        android:icon="@drawable/icon_pembayaran"
+        android:title="Pendapatan" />
+
+    <item
+        android:id="@+id/btn_dompet"
+        android:enabled="true"
+        android:icon="@drawable/icon_dompet"
+        android:title="Dompet" />
+
+    <item
+        android:id="@+id/btn_akun_pekerja"
+        android:enabled="true"
+        android:icon="@drawable/icon_profile"
+        android:title="Akun" />
+</menu>
