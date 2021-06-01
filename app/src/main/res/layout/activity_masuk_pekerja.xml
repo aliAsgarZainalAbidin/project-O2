@@ -24,6 +24,7 @@
         android:src="@drawable/man_sosmed" />
 
     <Button
+        android:visibility="invisible"
         android:id="@+id/btn_signup"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"

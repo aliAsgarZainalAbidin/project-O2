@@ -5,6 +5,7 @@ import com.oa.needyou.pekerja.beranda.model.SaldoResponModel;
 import com.oa.needyou.pekerja.model.OrderModel;
 import com.oa.needyou.pekerja.model.OrderResponModel;
 import com.oa.needyou.pekerja.model.PekerjaModel;
+import com.oa.needyou.pelanggan.model.ResponseModelPelanggan;
 
 import java.util.List;
 
@@ -17,6 +18,11 @@ import retrofit2.http.Query;
 
 public interface ApiRequestPekerja {
 
+    @FormUrlEncoded
+    @POST("add_pekerja.php")
+    Call<ResponseModelPelanggan> addPelanggan(@Field("nama_pelanggan") String nama_pelanggan,
+                                              @Field("email_pelanggan") String email_pelanggan,
+                                              @Field("password_pelanggan") String password_pelanggan);
     @GET("read_one_pekerja.php")
     Call<List<PekerjaModel>> readOnePekerja(@Query("email_pekerja") String username, @Query("pass_pekerja") String password);
 
@@ -36,7 +42,6 @@ public interface ApiRequestPekerja {
     @POST("update_status_order.php")
     Call<OrderResponModel> updateStatusOrder(@Field("id_order") String id_order,
                                              @Field("status_order") String status_order);
-
 
     @GET("read_saldo_pekerja.php")
     Call<SaldoResponModel> getDataSaldo(@Query("saldo_id_pekerja") String saldo_id_pekerja);
