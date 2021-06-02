@@ -18,6 +18,9 @@ import com.bumptech.glide.Glide;
 import com.oa.needyou.MainActivity;
 import com.needyou.needyou.R;
 import com.oa.needyou.URL_IP;
+import com.oa.needyou.pelanggan.akun.UpdatePelangganActivity;
+
+import static org.greenrobot.eventbus.EventBus.TAG;
 
 public class AkunPekerjaFragment extends Fragment {
 
@@ -33,7 +36,10 @@ public class AkunPekerjaFragment extends Fragment {
     private final String GET_PATH = "get_path";
     private final String GET_STATUS = "get_status";
 
+    private String id,nama,email,pass,telpon,gender,alamat,path,status;
+
     private Button btn_signout;
+    private Button btn_update;
 
     private EditText et_nama;
     private EditText et_usia;
@@ -57,6 +63,37 @@ public class AkunPekerjaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         btn_signout = view.findViewById(R.id.btn_signout);
+        btn_update = view.findViewById(R.id.btn_update_pekerja);
+
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String nama = et_nama.getText().toString();
+                String umur = et_usia.getText().toString();
+                String pekerjaan = et_pekerjaan.getText().toString();
+                String gender = et_gender.getText().toString();
+                String email = et_email.getText().toString();
+                String telpon = et_telpon.getText().toString();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(GET_ID, id);
+                bundle.putString(GET_NAMA, nama);
+                bundle.putString(GET_USIA, umur);
+                bundle.putString(GET_PEKERJAAN, pekerjaan);
+                bundle.putString(GET_GENDER, gender);
+                bundle.putString(GET_EMAIL, email);
+                bundle.putString(GET_TELPON, telpon);
+                bundle.putString(GET_PATH, path);
+                bundle.putString(GET_STATUS, status);
+
+                Intent intent = new Intent(getActivity(), UpdatePekerjaActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
+
         btn_signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,8 +122,10 @@ public class AkunPekerjaFragment extends Fragment {
             Glide.with(getActivity()).load(foto).error(R.drawable.img_circle).placeholder(R.drawable.img_circle).into(foto_profil);
 
 //            Picasso.with(getActivity()).load(foto).error(R.drawable.img_circle).placeholder(R.drawable.img_circle).into(foto_profil);
+            id = bundle.getString(GET_ID);
             et_nama.setText(bundle.getString(GET_NAMA));
             et_usia.setText(bundle.getString(GET_USIA));
+            Log.d(TAG, "onViewCreated: HALO "+bundle.getString(GET_USIA));
             et_pekerjaan.setText(bundle.getString(GET_PEKERJAAN));
             et_gender.setText(bundle.getString(GET_GENDER));
             et_email.setText(bundle.getString(GET_EMAIL));

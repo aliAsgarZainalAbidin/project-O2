@@ -22,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.oa.needyou.pelanggan.akun.UpdatePelangganActivity"></activity>
+        <activity android:name="com.oa.needyou.pekerja.akun.UpdatePekerjaActivity"></activity>
         <activity android:name="com.oa.needyou.pekerja.pendapatan.DetailRiwayatActivity" />
         <activity android:name="com.oa.needyou.pekerja.pendapatan.DetailSibukActivity" />
         <activity android:name="com.oa.needyou.pekerja.DeliveryPekerjaActivity" />
