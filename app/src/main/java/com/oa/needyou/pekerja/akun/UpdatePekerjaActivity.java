@@ -14,12 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.needyou.needyou.R;
 import com.oa.needyou.URL_IP;
 import com.oa.needyou.pekerja.api.ApiRequestPekerja;
@@ -27,6 +31,8 @@ import com.oa.needyou.pekerja.api.RetroServerPekerja;
 import com.oa.needyou.pekerja.model.OrderResponModel;
 import com.oa.needyou.pelanggan.api.ApiRequsetPelanggan;
 import com.oa.needyou.pelanggan.api.RetroServerPelanggan;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -51,7 +57,7 @@ public class UpdatePekerjaActivity extends AppCompatActivity {
     private final String GET_PATH = "get_path";
     private final String GET_STATUS = "get_status";
 
-    private String id, nama,umur, pekerjaan, email, pass, telpon, gender, alamat, path, status;
+    private String id, nama, umur, pekerjaan, email, pass, telpon, gender, alamat, path, status;
 
     private EditText et_nama;
     private EditText et_umur;
@@ -65,7 +71,7 @@ public class UpdatePekerjaActivity extends AppCompatActivity {
     private Button btn_update;
     private Button btn_batal;
 
-    private CircleImageView foto_profil;
+    private ImageView foto_profil;
     private ProgressDialog pd;
 
     Bitmap bitmap = null;
@@ -210,9 +216,7 @@ public class UpdatePekerjaActivity extends AppCompatActivity {
                     Log.e("Retro", "Message : " + response.body().getPesan());
 
                     Toast.makeText(UpdatePekerjaActivity.this, "Berhasil Update", Toast.LENGTH_SHORT).show();
-                    onBackPressed();
                 }
-
             }
 
             @Override
@@ -300,8 +304,17 @@ public class UpdatePekerjaActivity extends AppCompatActivity {
             et_pekerjaan.setText(pekerjaan);
             et_email.setText(email);
             String foto = URL_IP.ALAMAT_IP + path;
+            Log.d("UpdatePekerjaActivity", "getBundle: UPDATE"+foto);
 
-            Picasso.with(UpdatePekerjaActivity.this).load(foto).error(R.drawable.img_circle).placeholder(R.drawable.img_circle).into(foto_profil);
+//            Glide.with(this)
+//                    .load(foto)
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(foto_profil);
+            Picasso.with(UpdatePekerjaActivity.this)
+                    .load(foto)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .into(foto_profil);
             if (!gender.isEmpty() || !gender.equals("")) {
                 et_gender.setText(gender);
             } else {

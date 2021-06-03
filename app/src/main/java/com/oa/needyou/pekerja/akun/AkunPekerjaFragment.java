@@ -15,10 +15,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.oa.needyou.MainActivity;
 import com.needyou.needyou.R;
 import com.oa.needyou.URL_IP;
-import com.oa.needyou.pelanggan.akun.UpdatePelangganActivity;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import static org.greenrobot.eventbus.EventBus.TAG;
 
@@ -36,7 +39,7 @@ public class AkunPekerjaFragment extends Fragment {
     private final String GET_PATH = "get_path";
     private final String GET_STATUS = "get_status";
 
-    private String id,nama,email,pass,telpon,gender,alamat,path,status;
+    private String id, nama, email, pass, telpon, gender, alamat, path, status;
 
     private Button btn_signout;
     private Button btn_update;
@@ -64,6 +67,7 @@ public class AkunPekerjaFragment extends Fragment {
 
         btn_signout = view.findViewById(R.id.btn_signout);
         btn_update = view.findViewById(R.id.btn_update_pekerja);
+        path = this.getArguments().getString(GET_PATH);
 
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,17 +119,31 @@ public class AkunPekerjaFragment extends Fragment {
         Bundle bundle = this.getArguments();
         assert bundle != null;
         if (!bundle.isEmpty()) {
-            String foto = URL_IP.ALAMAT_IP+bundle.getString(GET_PATH);
+            String foto = URL_IP.ALAMAT_IP + bundle.getString(GET_PATH);
+            String fotos = bundle.getString(GET_PATH);
+            Log.d(TAG, "onViewCreated: " + fotos);
 
-            Log.e("GAMBAR", "VALUE : "+foto);
+            Log.e("GAMBAR", "VALUE : " + foto);
 
-            Glide.with(getActivity()).load(foto).error(R.drawable.img_circle).placeholder(R.drawable.img_circle).into(foto_profil);
+//            Glide.with(getActivity())
+//                    .load(foto)
+//                    .error(R.drawable.img_circle)
+//                    .placeholder(R.drawable.img_circle)
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(foto_profil);
 
-//            Picasso.with(getActivity()).load(foto).error(R.drawable.img_circle).placeholder(R.drawable.img_circle).into(foto_profil);
+            Picasso.with(getActivity())
+                    .load(foto)
+                    .error(R.drawable.img_circle)
+                    .placeholder(R.drawable.img_circle)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .into(foto_profil);
+
             id = bundle.getString(GET_ID);
             et_nama.setText(bundle.getString(GET_NAMA));
             et_usia.setText(bundle.getString(GET_USIA));
-            Log.d(TAG, "onViewCreated: HALO "+bundle.getString(GET_USIA));
+            Log.d(TAG, "onViewCreated: HALO " + bundle.getString(GET_USIA));
             et_pekerjaan.setText(bundle.getString(GET_PEKERJAAN));
             et_gender.setText(bundle.getString(GET_GENDER));
             et_email.setText(bundle.getString(GET_EMAIL));

@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.oa.needyou.pekerja.akun.UpdatePekerjaActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/foto_profil"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/img_circle" />
+        android:layout_marginTop="50dp"/>
 
     <EditText
         android:id="@+id/et_nama_update"
