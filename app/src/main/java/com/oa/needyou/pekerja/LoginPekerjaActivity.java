@@ -2,9 +2,7 @@ package com.oa.needyou.pekerja;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -17,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.needyou.needyou.R;
-import com.oa.needyou.model.UserLogin;
+import com.oa.needyou.model.UserPekerjaLogin;
 import com.oa.needyou.model.UserPreference;
 import com.oa.needyou.pekerja.api.ApiRequestPekerja;
 import com.oa.needyou.pekerja.api.RetroServerPekerja;
@@ -62,18 +60,18 @@ public class LoginPekerjaActivity extends AppCompatActivity {
 
         sharedPreferences = new UserPreference(this);
         if (sharedPreferences.isLogin()) {
-            UserLogin userLogin = sharedPreferences.getUser();
+            UserPekerjaLogin userPekerjaLogin = sharedPreferences.getUser();
             Bundle bundle = new Bundle();
-            bundle.putString(GET_ID, userLogin.getId());
-            bundle.putString(GET_NAMA, userLogin.getNama());
-            bundle.putString(GET_USIA, userLogin.getUsia());
-            bundle.putString(GET_PEKERJAAN, userLogin.getPekerjaan());
-            bundle.putString(GET_GENDER, userLogin.getGender());
-            bundle.putString(GET_EMAIL, userLogin.getEmail());
-            bundle.putString(GET_PASS, userLogin.getPassword());
-            bundle.putString(GET_TELPON, userLogin.getTelpon());
-            bundle.putString(GET_PATH, userLogin.getPath());
-            bundle.putString(GET_STATUS, userLogin.getStatus());
+            bundle.putString(GET_ID, userPekerjaLogin.getId());
+            bundle.putString(GET_NAMA, userPekerjaLogin.getNama());
+            bundle.putString(GET_USIA, userPekerjaLogin.getUsia());
+            bundle.putString(GET_PEKERJAAN, userPekerjaLogin.getPekerjaan());
+            bundle.putString(GET_GENDER, userPekerjaLogin.getGender());
+            bundle.putString(GET_EMAIL, userPekerjaLogin.getEmail());
+            bundle.putString(GET_PASS, userPekerjaLogin.getPassword());
+            bundle.putString(GET_TELPON, userPekerjaLogin.getTelpon());
+            bundle.putString(GET_PATH, userPekerjaLogin.getPath());
+            bundle.putString(GET_STATUS, userPekerjaLogin.getStatus());
 
             Intent intent = new Intent(LoginPekerjaActivity.this, DashboardPekerjaActivity.class);
             intent.putExtras(bundle);
@@ -168,20 +166,20 @@ public class LoginPekerjaActivity extends AppCompatActivity {
                         bundle.putString(GET_PATH, path);
                         bundle.putString(GET_STATUS, status);
 
-                        UserLogin userLogin = new UserLogin();
-                        userLogin.setId(id);
-                        userLogin.setNama(nama);
-                        userLogin.setUsia(usia);
-                        userLogin.setPekerjaan(pekerjaan);
-                        userLogin.setGender(gender);
-                        userLogin.setEmail(email);
-                        userLogin.setPassword(pass);
-                        userLogin.setTelpon(telpon);
-                        userLogin.setPath(path);
-                        userLogin.setStatus(status);
-                        userLogin.setLogin(true);
+                        UserPekerjaLogin userPekerjaLogin = new UserPekerjaLogin();
+                        userPekerjaLogin.setId(id);
+                        userPekerjaLogin.setNama(nama);
+                        userPekerjaLogin.setUsia(usia);
+                        userPekerjaLogin.setPekerjaan(pekerjaan);
+                        userPekerjaLogin.setGender(gender);
+                        userPekerjaLogin.setEmail(email);
+                        userPekerjaLogin.setPassword(pass);
+                        userPekerjaLogin.setTelpon(telpon);
+                        userPekerjaLogin.setPath(path);
+                        userPekerjaLogin.setStatus(status);
+                        userPekerjaLogin.setLogin(true);
 
-                        sharedPreferences.setUserLogin(userLogin);
+                        sharedPreferences.setUserLogin(userPekerjaLogin);
 
                         Toast.makeText(LoginPekerjaActivity.this, "Login Sukses..", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginPekerjaActivity.this, DashboardPekerjaActivity.class);

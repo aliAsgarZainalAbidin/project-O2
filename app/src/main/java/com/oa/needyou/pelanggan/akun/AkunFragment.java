@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.oa.needyou.MainActivity;
 import com.needyou.needyou.R;
 import com.oa.needyou.URL_IP;
+import com.oa.needyou.model.UserPreference;
 import com.oa.needyou.pekerja.OrderanPekerjaActivity;
 import com.oa.needyou.pelanggan.api.ApiRequsetPelanggan;
 import com.oa.needyou.pelanggan.api.RetroServerPelanggan;
@@ -44,6 +45,7 @@ public class AkunFragment extends Fragment {
     private String id,nama,email,pass,telpon,gender,alamat,path,status;
 
     private Button btn_signout;
+    private UserPreference sharedPreferences;
 
     private CircleImageView foto_profil;
     private EditText et_nama;
@@ -52,8 +54,7 @@ public class AkunFragment extends Fragment {
     private EditText et_alamat;
 
     private Button btn_update;
-
-
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,10 +72,14 @@ public class AkunFragment extends Fragment {
         et_telpon = view.findViewById(R.id.et_telpon_update);
         et_alamat = view.findViewById(R.id.et_alamat_update);
         btn_signout = view.findViewById(R.id.btn_signout);
+
+        sharedPreferences = new UserPreference(getContext());
         btn_signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sharedPreferences.logoutPelanggan();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                 startActivity(intent);
             }
         });

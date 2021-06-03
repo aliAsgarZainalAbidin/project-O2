@@ -199,6 +199,7 @@ public class UpdatePelangganActivity extends AppCompatActivity {
                     Log.e("Retro", "Message : "+response.body().getPesan());
 
                     Toast.makeText(UpdatePelangganActivity.this, "Berhasil Update", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
             }

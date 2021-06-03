@@ -3,7 +3,7 @@ package com.oa.needyou.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class UserLogin implements Parcelable {
+public class UserPekerjaLogin implements Parcelable {
     String id;
     String nama;
     String usia;
@@ -16,7 +16,7 @@ public class UserLogin implements Parcelable {
     String password;
     boolean isLogin;
 
-    public UserLogin() {
+    public UserPekerjaLogin() {
     }
 
     public String getId() {
@@ -107,11 +107,11 @@ public class UserLogin implements Parcelable {
         isLogin = login;
     }
 
-    public static Creator<UserLogin> getCREATOR() {
+    public static Creator<UserPekerjaLogin> getCREATOR() {
         return CREATOR;
     }
 
-    public UserLogin(String id, String nama, String usia, String pekerjaan, String gender, String telpon, String path, String status, String email, String password, boolean isLogin) {
+    public UserPekerjaLogin(String id, String nama, String usia, String pekerjaan, String gender, String telpon, String path, String status, String email, String password, boolean isLogin) {
         this.id = id;
         this.nama = nama;
         this.usia = usia;
@@ -125,7 +125,7 @@ public class UserLogin implements Parcelable {
         this.isLogin = isLogin;
     }
 
-    protected UserLogin(Parcel in) {
+    protected UserPekerjaLogin(Parcel in) {
         id = in.readString();
         nama = in.readString();
         usia = in.readString();
@@ -139,15 +139,15 @@ public class UserLogin implements Parcelable {
         isLogin = in.readByte() != 0;
     }
 
-    public static final Creator<UserLogin> CREATOR = new Creator<UserLogin>() {
+    public static final Creator<UserPekerjaLogin> CREATOR = new Creator<UserPekerjaLogin>() {
         @Override
-        public UserLogin createFromParcel(Parcel in) {
-            return new UserLogin(in);
+        public UserPekerjaLogin createFromParcel(Parcel in) {
+            return new UserPekerjaLogin(in);
         }
 
         @Override
-        public UserLogin[] newArray(int size) {
-            return new UserLogin[size];
+        public UserPekerjaLogin[] newArray(int size) {
+            return new UserPekerjaLogin[size];
         }
     };
 

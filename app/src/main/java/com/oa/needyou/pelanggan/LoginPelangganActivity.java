@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.needyou.needyou.R;
+import com.oa.needyou.model.UserPelangganLogin;
+import com.oa.needyou.model.UserPreference;
 import com.oa.needyou.pelanggan.api.ApiRequsetPelanggan;
 import com.oa.needyou.pelanggan.api.RetroServerPelanggan;
 import com.oa.needyou.pelanggan.model.PelangganModel;
@@ -31,6 +33,7 @@ public class LoginPelangganActivity extends AppCompatActivity {
     private Button btn_login;
     private TextView tv_salah;
     private ProgressBar progressBar;
+    private UserPreference sharedPreferences;
 
     private final String GET_ID = "get_id";
     private final String GET_NAMA = "get_nama";
@@ -48,6 +51,27 @@ public class LoginPelangganActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_pelanggan);
+
+        sharedPreferences = new UserPreference(this);
+        if (sharedPreferences.isPelangganLogin()){
+            UserPelangganLogin userPelangganLogin = sharedPreferences.getUserPelanggan();
+            Bundle bundle = new Bundle();
+            bundle.putString(sharedPreferences.ID_PELANGGAN, userPelangganLogin.getId());
+            bundle.putString(sharedPreferences.NAMA_PELANGGAN, userPelangganLogin.getNama());
+            bundle.putString(sharedPreferences.EMAIL_PELANGGAN, userPelangganLogin.getEmail());
+            bundle.putString(sharedPreferences.PASS_PELANGGAN, userPelangganLogin.getPass());
+            bundle.putString(sharedPreferences.TELPON_PELANGGAN, userPelangganLogin.getTelpon());
+            bundle.putString(sharedPreferences.GENDER_PELANGGAN, userPelangganLogin.getGender());
+            bundle.putString(sharedPreferences.ALAMAT_PELANGGAN, userPelangganLogin.getAlamat());
+            bundle.putString(sharedPreferences.PATH_PELANGGAN, userPelangganLogin.getPath());
+            bundle.putString(sharedPreferences.STATUS_PELANGGAN, userPelangganLogin.getStatus());
+
+            Intent intent = new Intent(LoginPelangganActivity.this, DashboardPelangganActivity.class);
+            intent.putExtras(bundle);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity(intent);
+        }
+
 
         et_username = findViewById(R.id.et_username);
         et_pass1 = findViewById(R.id.et_pass1);
@@ -118,10 +142,24 @@ public class LoginPelangganActivity extends AppCompatActivity {
                         bundle.putString(GET_PATH, path);
                         bundle.putString(GET_STATUS, status);
 
+                        UserPelangganLogin userPelangganLogin = new UserPelangganLogin();
+                        userPelangganLogin.setId(id);
+                        userPelangganLogin.setNama(nama);
+                        userPelangganLogin.setEmail(email);
+                        userPelangganLogin.setPass(pass);
+                        userPelangganLogin.setTelpon(telpon);
+                        userPelangganLogin.setGender(gender);
+                        userPelangganLogin.setAlamat(alamat);
+                        userPelangganLogin.setPath(path);
+                        userPelangganLogin.setStatus(status);
+                        userPelangganLogin.setLogin(true);
+
+                        sharedPreferences.setUserPelangganLogin(userPelangganLogin);
 
                         Toast.makeText(LoginPelangganActivity.this, "Login Sukses..", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginPelangganActivity.this, DashboardPelangganActivity.class);
                         intent.putExtras(bundle);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                         startActivity(intent);
                         finish();
 
