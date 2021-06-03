@@ -1,6 +1,7 @@
 package com.oa.needyou;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
+
+        FragmentManager fm = this.getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override

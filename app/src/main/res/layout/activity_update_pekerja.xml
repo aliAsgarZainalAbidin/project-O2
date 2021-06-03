@@ -70,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/et_gender_update"
         android:layout_marginHorizontal="16dp"
+        android:enabled="false"
         android:backgroundTint="@color/abuabu2"
         android:drawableLeft="@drawable/icon_email"
         android:gravity="center"

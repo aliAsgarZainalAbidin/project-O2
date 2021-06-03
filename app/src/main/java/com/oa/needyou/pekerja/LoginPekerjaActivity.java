@@ -2,7 +2,9 @@ package com.oa.needyou.pekerja;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.needyou.needyou.R;
+import com.oa.needyou.model.UserLogin;
+import com.oa.needyou.model.UserPreference;
 import com.oa.needyou.pekerja.api.ApiRequestPekerja;
 import com.oa.needyou.pekerja.api.RetroServerPekerja;
 import com.oa.needyou.pekerja.model.PekerjaModel;
@@ -42,6 +46,7 @@ public class LoginPekerjaActivity extends AppCompatActivity {
     private Button btn_login;
     private TextView tv_salah;
     private ProgressBar progressBar;
+    private UserPreference sharedPreferences;
 
     private ImageView img_showPass;
 
@@ -55,6 +60,27 @@ public class LoginPekerjaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_pekerja);
 
+        sharedPreferences = new UserPreference(this);
+        if (sharedPreferences.isLogin()) {
+            UserLogin userLogin = sharedPreferences.getUser();
+            Bundle bundle = new Bundle();
+            bundle.putString(GET_ID, userLogin.getId());
+            bundle.putString(GET_NAMA, userLogin.getNama());
+            bundle.putString(GET_USIA, userLogin.getUsia());
+            bundle.putString(GET_PEKERJAAN, userLogin.getPekerjaan());
+            bundle.putString(GET_GENDER, userLogin.getGender());
+            bundle.putString(GET_EMAIL, userLogin.getEmail());
+            bundle.putString(GET_PASS, userLogin.getPassword());
+            bundle.putString(GET_TELPON, userLogin.getTelpon());
+            bundle.putString(GET_PATH, userLogin.getPath());
+            bundle.putString(GET_STATUS, userLogin.getStatus());
+
+            Intent intent = new Intent(LoginPekerjaActivity.this, DashboardPekerjaActivity.class);
+            intent.putExtras(bundle);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity(intent);
+        }
+
         img_showPass = findViewById(R.id.img_showPass);
         et_email = findViewById(R.id.et_email_update);
         et_pass1 = findViewById(R.id.et_pass1);
@@ -66,7 +92,7 @@ public class LoginPekerjaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (showPassword){
+                if (showPassword) {
                     et_pass1.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     showPassword = false;
                 } else {
@@ -105,15 +131,15 @@ public class LoginPekerjaActivity extends AppCompatActivity {
         password = et_pass1.getText().toString().trim();
 
         ApiRequestPekerja apiRequestPekerja = RetroServerPekerja.getClientPekerja().create(ApiRequestPekerja.class);
-        Call<List<PekerjaModel>> readOnepekerja = apiRequestPekerja.readOnePekerja(email1,password);
+        Call<List<PekerjaModel>> readOnepekerja = apiRequestPekerja.readOnePekerja(email1, password);
         readOnepekerja.enqueue(new Callback<List<PekerjaModel>>() {
             @Override
             public void onResponse(Call<List<PekerjaModel>> call, Response<List<PekerjaModel>> response) {
                 progressBar.setVisibility(View.GONE);
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     assert response.body() != null;
-                    if (!response.body().isEmpty()){
+                    if (!response.body().isEmpty()) {
                         tv_salah.setText("");
 
                         for (int i = 0; i < response.body().size(); i++) {
@@ -142,11 +168,27 @@ public class LoginPekerjaActivity extends AppCompatActivity {
                         bundle.putString(GET_PATH, path);
                         bundle.putString(GET_STATUS, status);
 
+                        UserLogin userLogin = new UserLogin();
+                        userLogin.setId(id);
+                        userLogin.setNama(nama);
+                        userLogin.setUsia(usia);
+                        userLogin.setPekerjaan(pekerjaan);
+                        userLogin.setGender(gender);
+                        userLogin.setEmail(email);
+                        userLogin.setPassword(pass);
+                        userLogin.setTelpon(telpon);
+                        userLogin.setPath(path);
+                        userLogin.setStatus(status);
+                        userLogin.setLogin(true);
+
+                        sharedPreferences.setUserLogin(userLogin);
+
                         Toast.makeText(LoginPekerjaActivity.this, "Login Sukses..", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginPekerjaActivity.this, DashboardPekerjaActivity.class);
                         intent.putExtras(bundle);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                         startActivity(intent);
-
+                        finish();
                     }
 
                 } else {
@@ -159,7 +201,7 @@ public class LoginPekerjaActivity extends AppCompatActivity {
             public void onFailure(Call<List<PekerjaModel>> call, Throwable t) {
 
                 Toast.makeText(LoginPekerjaActivity.this, "EROR", Toast.LENGTH_SHORT).show();
-                Log.d("PEKERJA", "RESPON : "+t);
+                Log.d("PEKERJA", "RESPON : " + t);
 
             }
         });

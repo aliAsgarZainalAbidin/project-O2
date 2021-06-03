@@ -216,6 +216,7 @@ public class UpdatePekerjaActivity extends AppCompatActivity {
                     Log.e("Retro", "Message : " + response.body().getPesan());
 
                     Toast.makeText(UpdatePekerjaActivity.this, "Berhasil Update", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
 

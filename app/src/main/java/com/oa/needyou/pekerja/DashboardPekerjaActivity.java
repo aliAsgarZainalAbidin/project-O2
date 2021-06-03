@@ -80,9 +80,7 @@ public class DashboardPekerjaActivity extends AppCompatActivity {
                     Intent intent = new Intent(DashboardPekerjaActivity.this, OrderanPekerjaActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
-
                 }
-
 
             }
 
