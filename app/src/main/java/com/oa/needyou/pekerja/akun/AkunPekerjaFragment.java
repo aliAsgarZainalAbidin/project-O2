@@ -22,6 +22,9 @@ import com.oa.needyou.model.UserPreference;
 import com.oa.needyou.pekerja.api.ApiRequestPekerja;
 import com.oa.needyou.pekerja.api.RetroServerPekerja;
 import com.oa.needyou.pekerja.model.PekerjaModel;
+import com.oa.needyou.pelanggan.api.ApiRequsetPelanggan;
+import com.oa.needyou.pelanggan.api.RetroServerPelanggan;
+import com.oa.needyou.pelanggan.model.PelangganModel;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -166,8 +169,49 @@ public class AkunPekerjaFragment extends Fragment {
 
     @Override
     public void onResume() {
-//        cekuser();
         super.onResume();
+        loadData();
+    }
+
+    private void loadData() {
+
+        ApiRequestPekerja apiRequestPekerja =RetroServerPekerja.getClientPekerja().create(ApiRequestPekerja.class);
+        Call<List<PekerjaModel>> listCall= apiRequestPekerja.readOneIDPekerja(id);
+
+        listCall.enqueue(new Callback<List<PekerjaModel>>() {
+            @Override
+            public void onResponse(Call<List<PekerjaModel>> call, Response<List<PekerjaModel>> response) {
+                if (response.isSuccessful()){
+                    for (int i=0; i < response.body().size(); i++){
+                        PekerjaModel pekerjaModel = response.body().get(i);
+                        nama = pekerjaModel.getNama_pekerja();
+                        usia = pekerjaModel.getUsia_pekerja();
+                        pekerjaan = pekerjaModel.getPekerjaan_pekerja();
+                        gender = pekerjaModel.getGender_pekerja();
+                        email= pekerjaModel.getEmail_pekerja();
+                        telpon = pekerjaModel.getTelpon_pekerja();
+                        path = pekerjaModel.getPath_profil();
+
+                        String foto = URL_IP.ALAMAT_IP+path;
+
+                        et_nama.setText(nama);
+                        et_usia.setText(usia);
+                        et_pekerjaan.setText(pekerjaan);
+                        et_gender.setText(gender);
+                        et_email.setText(email);
+                        et_telpon.setText(telpon);
+
+                        Picasso.with(getActivity()).load(foto).error(R.drawable.img_circle).placeholder(R.drawable.img_circle).into(foto_profil);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<PekerjaModel>> call, Throwable t) {
+
+            }
+        });
+
     }
 
 

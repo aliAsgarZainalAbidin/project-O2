@@ -116,6 +116,12 @@ public class AkunFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
     private void getBundle() {
         Bundle bundle = this.getArguments();
         assert bundle != null;
@@ -186,7 +192,5 @@ public class AkunFragment extends Fragment {
 
             }
         });
-
-
     }
 }
