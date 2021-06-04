@@ -56,15 +56,15 @@ public class LoginPelangganActivity extends AppCompatActivity {
         if (sharedPreferences.isPelangganLogin()){
             UserPelangganLogin userPelangganLogin = sharedPreferences.getUserPelanggan();
             Bundle bundle = new Bundle();
-            bundle.putString(sharedPreferences.ID_PELANGGAN, userPelangganLogin.getId());
-            bundle.putString(sharedPreferences.NAMA_PELANGGAN, userPelangganLogin.getNama());
-            bundle.putString(sharedPreferences.EMAIL_PELANGGAN, userPelangganLogin.getEmail());
-            bundle.putString(sharedPreferences.PASS_PELANGGAN, userPelangganLogin.getPass());
-            bundle.putString(sharedPreferences.TELPON_PELANGGAN, userPelangganLogin.getTelpon());
-            bundle.putString(sharedPreferences.GENDER_PELANGGAN, userPelangganLogin.getGender());
-            bundle.putString(sharedPreferences.ALAMAT_PELANGGAN, userPelangganLogin.getAlamat());
-            bundle.putString(sharedPreferences.PATH_PELANGGAN, userPelangganLogin.getPath());
-            bundle.putString(sharedPreferences.STATUS_PELANGGAN, userPelangganLogin.getStatus());
+            bundle.putString(GET_ID, userPelangganLogin.getId());
+            bundle.putString(GET_NAMA, userPelangganLogin.getNama());
+            bundle.putString(GET_EMAIL, userPelangganLogin.getEmail());
+            bundle.putString(GET_PASS, userPelangganLogin.getPass());
+            bundle.putString(GET_TELPON, userPelangganLogin.getTelpon());
+            bundle.putString(GET_GENDER, userPelangganLogin.getGender());
+            bundle.putString(GET_ALAMAT, userPelangganLogin.getAlamat());
+            bundle.putString(GET_PATH, userPelangganLogin.getPath());
+            bundle.putString(GET_STATUS, userPelangganLogin.getStatus());
 
             Intent intent = new Intent(LoginPelangganActivity.this, DashboardPelangganActivity.class);
             intent.putExtras(bundle);

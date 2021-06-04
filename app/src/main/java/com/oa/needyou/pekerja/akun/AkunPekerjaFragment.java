@@ -76,7 +76,7 @@ public class AkunPekerjaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        btn_signout = view.findViewById(R.id.btn_signout);
+        btn_signout = view.findViewById(R.id.btn_signout_pekerja);
         btn_update = view.findViewById(R.id.btn_update_pekerja);
         path = this.getArguments().getString(GET_PATH);
         sharedPreferences = new UserPreference(getContext());

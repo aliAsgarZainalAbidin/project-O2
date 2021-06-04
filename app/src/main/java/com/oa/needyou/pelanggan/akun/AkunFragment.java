@@ -54,7 +54,7 @@ public class AkunFragment extends Fragment {
     private EditText et_alamat;
 
     private Button btn_update;
-    
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

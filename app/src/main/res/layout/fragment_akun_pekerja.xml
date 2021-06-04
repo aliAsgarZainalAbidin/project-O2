@@ -93,7 +93,7 @@
 
 
     <Button
-        android:id="@+id/btn_signout"
+        android:id="@+id/btn_signout_pekerja"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -107,7 +107,7 @@
         android:id="@+id/btn_update_pekerja"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btn_signout"
+        android:layout_above="@id/btn_signout_pekerja"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_btn_regist"
         android:gravity="center"
