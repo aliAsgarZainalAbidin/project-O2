@@ -15,10 +15,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_llogo"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:hardwareAccelerated="true"
-        android:roundIcon="@mipmap/ic_llogo_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.oa.needyou.pelanggan.akun.UpdatePelangganActivity"></activity>
