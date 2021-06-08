@@ -66,7 +66,7 @@
 
     <ImageView
         android:id="@+id/img_showPass"
-        android:src="@drawable/ic_remove_red_eye"
+        app:srcCompat="@drawable/ic_remove_red_eye"
         android:layout_width="wrap_content"
         android:layout_marginRight="14dp"
         android:layout_alignBottom="@id/et_pass1"

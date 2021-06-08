@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,10 @@ public class LoginPelangganActivity extends AppCompatActivity {
     private TextView tv_salah;
     private ProgressBar progressBar;
     private UserPreference sharedPreferences;
+
+    private ImageView img_showPass;
+
+    private boolean showPassword = true;
 
     private final String GET_ID = "get_id";
     private final String GET_NAMA = "get_nama";
@@ -71,6 +77,22 @@ public class LoginPelangganActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
             startActivity(intent);
         }
+
+        img_showPass = findViewById(R.id.img_showPass);
+
+        img_showPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (showPassword) {
+                    et_pass1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    showPassword = false;
+                } else {
+                    et_pass1.setTransformationMethod(null);
+                    showPassword = true;
+                }
+            }
+        });
 
 
         et_username = findViewById(R.id.et_username);

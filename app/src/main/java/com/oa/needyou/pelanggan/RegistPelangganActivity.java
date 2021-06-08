@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -33,6 +35,10 @@ public class RegistPelangganActivity extends AppCompatActivity {
     private Button btn_regist;
     private ProgressBar progressBar;
 
+    private ImageView img_showPass;
+
+    private boolean showPassword = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,22 @@ public class RegistPelangganActivity extends AppCompatActivity {
         btn_regist = findViewById(R.id.btn_regist);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+
+        img_showPass = findViewById(R.id.img_showPass);
+
+        img_showPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (showPassword) {
+                    et_pass1.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    showPassword = false;
+                } else {
+                    et_pass1.setTransformationMethod(null);
+                    showPassword = true;
+                }
+            }
+        });
 
         btn_regist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +90,9 @@ public class RegistPelangganActivity extends AppCompatActivity {
         });
 
     }
+
+
+
     private void tambah_Pelanggan(){
                 progressBar.setVisibility(View.VISIBLE);
 
