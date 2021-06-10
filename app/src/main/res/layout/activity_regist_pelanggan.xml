@@ -13,7 +13,7 @@
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:src="@mipmap/logo" />
+        app:srcCompat="@drawable/ic_logo" />
 
     <ImageView
         android:id="@+id/person2"
