@@ -1,5 +1,6 @@
 package com.oa.needyou.model;
 
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,7 +14,7 @@ public class UserPelangganLogin implements Parcelable {
     String alamat;
     String path;
     String status;
-    boolean isLogin;
+    boolean isPelangganLogin;
 
     protected UserPelangganLogin(Parcel in) {
         id = in.readString();
@@ -25,7 +26,7 @@ public class UserPelangganLogin implements Parcelable {
         alamat = in.readString();
         path = in.readString();
         status = in.readString();
-        isLogin = in.readByte() != 0;
+        isPelangganLogin = in.readByte() != 0;
     }
 
     public static final Creator<UserPelangganLogin> CREATOR = new Creator<UserPelangganLogin>() {
@@ -40,12 +41,12 @@ public class UserPelangganLogin implements Parcelable {
         }
     };
 
-    public boolean isLogin() {
-        return isLogin;
+    public boolean isPelangganLogin() {
+        return isPelangganLogin;
     }
 
     public void setLogin(boolean login) {
-        isLogin = login;
+        isPelangganLogin = login;
     }
 
     public UserPelangganLogin() {
@@ -139,6 +140,6 @@ public class UserPelangganLogin implements Parcelable {
         parcel.writeString(alamat);
         parcel.writeString(path);
         parcel.writeString(status);
-        parcel.writeByte((byte) (isLogin ? 1 : 0));
+        parcel.writeByte((byte) (isPelangganLogin ? 1 : 0));
     }
 }

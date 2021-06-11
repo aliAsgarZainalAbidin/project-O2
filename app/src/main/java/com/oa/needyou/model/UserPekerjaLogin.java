@@ -14,7 +14,7 @@ public class UserPekerjaLogin implements Parcelable {
     String status;
     String email;
     String password;
-    boolean isLogin;
+    boolean isPekerjaLogin;
 
     public UserPekerjaLogin() {
     }
@@ -99,19 +99,19 @@ public class UserPekerjaLogin implements Parcelable {
         this.password = password;
     }
 
-    public boolean isLogin() {
-        return isLogin;
+    public boolean isPekerjaLogin() {
+        return isPekerjaLogin;
     }
 
     public void setLogin(boolean login) {
-        isLogin = login;
+        isPekerjaLogin = login;
     }
 
     public static Creator<UserPekerjaLogin> getCREATOR() {
         return CREATOR;
     }
 
-    public UserPekerjaLogin(String id, String nama, String usia, String pekerjaan, String gender, String telpon, String path, String status, String email, String password, boolean isLogin) {
+    public UserPekerjaLogin(String id, String nama, String usia, String pekerjaan, String gender, String telpon, String path, String status, String email, String password, boolean isPekerjaLogin) {
         this.id = id;
         this.nama = nama;
         this.usia = usia;
@@ -122,7 +122,7 @@ public class UserPekerjaLogin implements Parcelable {
         this.status = status;
         this.email = email;
         this.password = password;
-        this.isLogin = isLogin;
+        this.isPekerjaLogin = isPekerjaLogin;
     }
 
     protected UserPekerjaLogin(Parcel in) {
@@ -136,7 +136,7 @@ public class UserPekerjaLogin implements Parcelable {
         status = in.readString();
         email = in.readString();
         password = in.readString();
-        isLogin = in.readByte() != 0;
+        isPekerjaLogin = in.readByte() != 0;
     }
 
     public static final Creator<UserPekerjaLogin> CREATOR = new Creator<UserPekerjaLogin>() {
@@ -168,6 +168,6 @@ public class UserPekerjaLogin implements Parcelable {
         parcel.writeString(status);
         parcel.writeString(email);
         parcel.writeString(password);
-        parcel.writeByte((byte) (isLogin ? 1 : 0));
+        parcel.writeByte((byte) (isPekerjaLogin ? 1 : 0));
     }
 }
