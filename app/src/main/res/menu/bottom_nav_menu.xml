@@ -28,11 +28,11 @@
         android:icon="@drawable/icon_pembayaran"
         android:title="Pembayaran" />
 
-    <item
-        android:id="@+id/btn_pesan"
-        android:enabled="true"
-        android:icon="@drawable/icon_pesan"
-        android:title="Pesan" />
+<!--    <item-->
+<!--        android:id="@+id/btn_pesan"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/icon_pesan"-->
+<!--        android:title="Pesan" />-->
 
 
 </menu>

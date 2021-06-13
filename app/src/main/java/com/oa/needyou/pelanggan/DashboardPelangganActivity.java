@@ -97,9 +97,9 @@ public class DashboardPelangganActivity extends AppCompatActivity {
                     openFragment(new PembayaranFragment());
                     return true;
 
-                case R.id.btn_pesan:
-                    openFragment(new PesanFragment());
-                    return true;
+//                case R.id.btn_pesan:
+//                    openFragment(new PesanFragment());
+//                    return true;
 
             }
 
