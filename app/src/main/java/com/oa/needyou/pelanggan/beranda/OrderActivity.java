@@ -197,24 +197,25 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String status = (String) dataSnapshot.getValue();
 
-                            assert status != null;
-                            if (status.equals("Aktif") && sekali_ubah) {
-                                myRef.setValue("Menunggu");
-                                sendDataOrder(id, id_random, latitudKirim, longitudKirim);
-                                sekali_ubah = false;
-                            }
+                            if(status != null){
+                                if (status.equals("Aktif") && sekali_ubah) {
+                                    myRef.setValue("Menunggu");
+                                    sendDataOrder(id, id_random, latitudKirim, longitudKirim);
+                                    sekali_ubah = false;
+                                }
 
-                            if (status.equals("Delivery")) {
+                                if (status.equals("Delivery")) {
 
-                                Bundle bundle = new Bundle();
-                                bundle.putString(GET_ID, id);
-                                bundle.putString(GET_ID_PEKERJA, id_random);
-                                bundle.putString("latitude", latitudKirim);
-                                bundle.putString("longitude", longitudKirim);
-                                Intent intent = new Intent(OrderActivity.this, DeliveryPelangganActivity.class);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
-                                finish();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString(GET_ID, id);
+                                    bundle.putString(GET_ID_PEKERJA, id_random);
+                                    bundle.putString("latitude", latitudKirim);
+                                    bundle.putString("longitude", longitudKirim);
+                                    Intent intent = new Intent(OrderActivity.this, DeliveryPelangganActivity.class);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }
 
                         }

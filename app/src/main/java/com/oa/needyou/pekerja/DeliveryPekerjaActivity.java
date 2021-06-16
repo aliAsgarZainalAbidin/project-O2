@@ -184,16 +184,12 @@ public class DeliveryPekerjaActivity extends AppCompatActivity implements OnMapR
                         .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
-
                                 updateFirebaseSibuk(id_pekerja);
                                 updateDatabaseSibuk();
                                 updateSaldo(id_pekerja);
                                 intentToDashboard(id_pekerja);
-
-
                             }
-                        })
-                        .show();
+                        }).show();
             }
         });
 

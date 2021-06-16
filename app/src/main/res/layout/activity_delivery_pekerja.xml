@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/ic_phone_black_24dp"
+                app:srcCompat="@drawable/ic_phone_black_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_nama_pelanggan" />
 
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/ic_sms_black_24dp"
+                app:srcCompat="@drawable/ic_sms_black_24dp"
                 app:layout_constraintEnd_toStartOf="@+id/img_call"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/tv_nama_pelanggan"
@@ -113,7 +113,7 @@
         android:background="@drawable/btn_location"
         android:elevation="8dp"
         android:padding="5dp"
-        android:src="@drawable/ic_my_location_black_24dp" />
+        app:srcCompat="@drawable/ic_my_location_black_24dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"

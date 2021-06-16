@@ -242,8 +242,10 @@ public class DeliveryPelangganActivity extends AppCompatActivity implements OnMa
         latLng = new LatLng(Double.valueOf(latitude_firebase_pekerja), Double.valueOf(longitude_firebase_pekerja));
 
         SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        assert supportMapFragment != null;
-        supportMapFragment.getMapAsync(this);
+//        assert supportMapFragment != null;
+        if (supportMapFragment != null){
+            supportMapFragment.getMapAsync(this);
+        }
 
     }
 
