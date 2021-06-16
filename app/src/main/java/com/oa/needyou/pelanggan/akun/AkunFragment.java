@@ -168,8 +168,7 @@ public class AkunFragment extends Fragment {
 
                         String foto = URL_IP.ALAMAT_IP+path;
 
-                        Picasso.with(getActivity()).load(foto).error(R.drawable.img_circle).placeholder(R.drawable.img_circle).into(foto_profil);
-
+                        Picasso.with(getContext()).load(foto).error(R.drawable.ic_baseline_account_circle_24).placeholder(R.drawable.ic_baseline_account_circle_24).into(foto_profil);
 
                         if (!telpon.isEmpty()||!telpon.equals("")){
                             et_telpon.setText(telpon);

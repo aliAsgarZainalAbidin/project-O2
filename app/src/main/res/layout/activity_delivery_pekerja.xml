@@ -85,6 +85,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_nama_pelanggan" />
 
             <ImageView
+                android:visibility="invisible"
                 android:id="@+id/img_sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

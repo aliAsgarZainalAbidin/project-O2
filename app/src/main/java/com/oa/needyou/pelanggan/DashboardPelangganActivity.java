@@ -40,6 +40,7 @@ public class DashboardPelangganActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getBundle();
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        bottomNavigationView.setSelectedItemId(R.id.btn_beranda);
         openFragment(new BerandaFragment());
     }
 
@@ -93,9 +94,9 @@ public class DashboardPelangganActivity extends AppCompatActivity {
                     openFragment(new AktifitasFragment());
                     return true;
 
-                case R.id.btn_pembayaran:
-                    openFragment(new PembayaranFragment());
-                    return true;
+//                case R.id.btn_pembayaran:
+//                    openFragment(new PembayaranFragment());
+//                    return true;
 
 //                case R.id.btn_pesan:
 //                    openFragment(new PesanFragment());
