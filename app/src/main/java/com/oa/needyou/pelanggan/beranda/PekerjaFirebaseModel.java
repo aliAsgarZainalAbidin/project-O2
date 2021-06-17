@@ -3,10 +3,28 @@ package com.oa.needyou.pelanggan.beranda;
 public class PekerjaFirebaseModel {
 
     private String id_pekerja;
+    private String kode_order;
     private String latitude_pekerja;
     private String longitude_pekerja;
     private String nama_pekerja;
     private String status_pekerja;
+
+    public String getKode_order() {
+        return kode_order;
+    }
+
+    public void setKode_order(String kode_order) {
+        this.kode_order = kode_order;
+    }
+
+    public PekerjaFirebaseModel(String id_pekerja, String kode_order, String latitude_pekerja, String longitude_pekerja, String nama_pekerja, String status_pekerja) {
+        this.id_pekerja = id_pekerja;
+        this.kode_order = kode_order;
+        this.latitude_pekerja = latitude_pekerja;
+        this.longitude_pekerja = longitude_pekerja;
+        this.nama_pekerja = nama_pekerja;
+        this.status_pekerja = status_pekerja;
+    }
 
     public PekerjaFirebaseModel(String id_pekerja, String latitude_pekerja, String longitude_pekerja, String nama_pekerja, String status_pekerja) {
         this.id_pekerja = id_pekerja;

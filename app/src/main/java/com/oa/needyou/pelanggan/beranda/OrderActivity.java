@@ -250,8 +250,6 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
                 myRef.setValue("Aktif");
                 relativ_loading.setVisibility(View.GONE);
 
-
-
             }
         });
 
@@ -351,13 +349,13 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
                     if (kode.equals("1")){
 //                        Toast.makeText(OrderActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
                         Log.e("RETROFIT ", "KODE : "+response.body().getValue());
-                        Log.e("RETROFIT ", "Message : "+response.body().getMessage());
+                        Log.e("RETROFIT ", "Message : 352 "+response.body().getMessage());
                         changeKodeFirebase(id_pekerja,kode_order);
                     } else {
 
                         Toast.makeText(OrderActivity.this, "Error", Toast.LENGTH_SHORT).show();
                         Log.e("RETROFIT ", "KODE : "+response.body().getValue());
-                        Log.e("RETROFIT ", "Message : "+response.body().getMessage());
+                        Log.e("RETROFIT ", "Message : 358"+response.body().getMessage());
                     }
                 } else {
                     Log.e("RETROFIT", "Respon : Tidak Sukses");
@@ -467,6 +465,8 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
         try {
             addressList = geocoder.getFromLocation(latitud, longitud, 1);
             String address = addressList.get(0).getAddressLine(0);
+            address = address.replaceAll("'"," ");
+            Log.d("TAG", "getAddress: "+address);
             alamat_latlig = address;
             tv_alamat_map.setText(address);
             input_alamat.setText(address);
@@ -487,8 +487,10 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 PekerjaFirebaseModel pekerjaFirebaseModel = dataSnapshot.getValue(PekerjaFirebaseModel.class);
+                models.clear();
                 models.add(pekerjaFirebaseModel);
                 random = (int) (Math.random() * models.size() + 1);
+                Log.d("TAG", "onChildAdded: "+models.size() +1+" = "+ random );
             }
 
             @Override
