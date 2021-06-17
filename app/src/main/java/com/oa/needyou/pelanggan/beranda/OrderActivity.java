@@ -53,7 +53,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -67,8 +66,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -123,6 +125,7 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
     private RelativeLayout relativ_loading;
 
     private ArrayList<PekerjaFirebaseModel> models = new ArrayList<>();
+    private Map<Integer, String> mapPekerja = new HashMap<>();
 
     private int random;
 
@@ -192,12 +195,13 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("Pekerja").child(id_random).child("status_pekerja");
+                    Log.d("TAG", "onClick: " + myRef.getPath());
                     myRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String status = (String) dataSnapshot.getValue();
 
-                            if(status != null){
+                            if (status != null) {
                                 if (status.equals("Aktif") && sekali_ubah) {
                                     myRef.setValue("Menunggu");
                                     sendDataOrder(id, id_random, latitudKirim, longitudKirim);
@@ -248,6 +252,7 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Pekerja").child(String.valueOf(random)).child("status_pekerja");
                 myRef.setValue("Aktif");
+                sekali_ubah = true;
                 relativ_loading.setVisibility(View.GONE);
 
             }
@@ -312,7 +317,7 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String kode = (String) dataSnapshot.getValue();
-                if (kode.equals("-")){
+                if (kode.equals("-")) {
                     myRef.setValue(kode_order);
                 }
 
@@ -343,19 +348,19 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onResponse(Call<OrderModel> call, Response<OrderModel> response) {
 
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     assert response.body() != null;
                     String kode = response.body().getValue();
-                    if (kode.equals("1")){
+                    if (kode.equals("1")) {
 //                        Toast.makeText(OrderActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
-                        Log.e("RETROFIT ", "KODE : "+response.body().getValue());
-                        Log.e("RETROFIT ", "Message : 352 "+response.body().getMessage());
-                        changeKodeFirebase(id_pekerja,kode_order);
+                        Log.e("RETROFIT ", "KODE : " + response.body().getValue());
+                        Log.e("RETROFIT ", "Message : 352 " + response.body().getMessage());
+                        changeKodeFirebase(id_pekerja, kode_order);
                     } else {
 
                         Toast.makeText(OrderActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                        Log.e("RETROFIT ", "KODE : "+response.body().getValue());
-                        Log.e("RETROFIT ", "Message : 358"+response.body().getMessage());
+                        Log.e("RETROFIT ", "KODE : " + response.body().getValue());
+                        Log.e("RETROFIT ", "Message : 358" + response.body().getMessage());
                     }
                 } else {
                     Log.e("RETROFIT", "Respon : Tidak Sukses");
@@ -367,7 +372,7 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
             public void onFailure(Call<OrderModel> call, Throwable t) {
 
 
-                Log.e("RETROFIT", "Respon : "+t);
+                Log.e("RETROFIT", "Respon : " + t);
 
             }
         });
@@ -465,8 +470,8 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
         try {
             addressList = geocoder.getFromLocation(latitud, longitud, 1);
             String address = addressList.get(0).getAddressLine(0);
-            address = address.replaceAll("'"," ");
-            Log.d("TAG", "getAddress: "+address);
+            address = address.replaceAll("'", " ");
+            Log.d("TAG", "getAddress: " + address);
             alamat_latlig = address;
             tv_alamat_map.setText(address);
             input_alamat.setText(address);
@@ -482,30 +487,29 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
         DatabaseReference myRef = database.getReference("Pekerja");
         Query queryRef = myRef.orderByChild("status_pekerja").equalTo("Aktif");
 
-        queryRef.addChildEventListener(new ChildEventListener() {
+        queryRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Integer> listIdPekerja = new ArrayList<>();
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    PekerjaFirebaseModel pekerjaFirebaseModel = new PekerjaFirebaseModel();
+                    listIdPekerja.add(Integer.parseInt(data.child("id_pekerja").getValue().toString()));
 
-                PekerjaFirebaseModel pekerjaFirebaseModel = dataSnapshot.getValue(PekerjaFirebaseModel.class);
-                models.clear();
-                models.add(pekerjaFirebaseModel);
-                random = (int) (Math.random() * models.size() + 1);
-                Log.d("TAG", "onChildAdded: "+models.size() +1+" = "+ random );
-            }
+                    pekerjaFirebaseModel.setId_pekerja(data.child("id_pekerja").getValue().toString());
+                    pekerjaFirebaseModel.setKode_order(data.child("kode_order").getValue().toString());
+                    pekerjaFirebaseModel.setLatitude_pekerja(data.child("latitude_pekerja").toString());
+                    pekerjaFirebaseModel.setLongitude_pekerja(data.child("longitude_pekerja").toString());
+                    pekerjaFirebaseModel.setNama_pekerja(data.child("nama_pekerja").toString());
+                    pekerjaFirebaseModel.setStatus_pekerja(data.child("status_pekerja").toString());
+                    models.add(pekerjaFirebaseModel);
+                }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                if (listIdPekerja.size()>1){
+                    random = getRandomElement(listIdPekerja);
+                } else if (listIdPekerja.size()==1) {
+                    random = listIdPekerja.get(0);
+                }
+                Log.d("TAG", "onDataChange: " + random);
             }
 
             @Override
@@ -513,8 +517,47 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
 
             }
         });
+//        queryRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                PekerjaFirebaseModel pekerjaFirebaseModel = dataSnapshot.getValue(PekerjaFirebaseModel.class);
+//                models.add(pekerjaFirebaseModel);
+//                random = (int) (Math.random() * models.size() + 1);
+//                Log.d("TAG", "onChildAdded: "+models.size() +1+" = "+ random );
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
+    }
+
+    public int getRandomElement(List<Integer> list) {
+        int value;
+        Random rand = new Random();
+        Log.d("TAG", "getRandomElement: "+list.size());
+        value = list.get(rand.nextInt(list.size()));
+        Log.d("TAG", "getRandomElement: " + value);
+        return value;
     }
 
     @Override
