@@ -372,6 +372,16 @@ public class OrderanPekerjaActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    protected void onDestroy() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        int id = Integer.parseInt(id_pekerja);
+        if ( id > 0){
+            DatabaseReference myRef = database.getReference("Pekerja").child(String.valueOf(id)).child("status_pekerja");
+            myRef.setValue("Non-Aktif");
+        }
+        super.onDestroy();
     }
 }

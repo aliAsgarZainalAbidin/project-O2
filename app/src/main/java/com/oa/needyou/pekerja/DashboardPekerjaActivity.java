@@ -162,4 +162,15 @@ public class DashboardPekerjaActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        int id = Integer.parseInt(this.id);
+        if ( id > 0){
+            DatabaseReference myRef = database.getReference("Pekerja").child(String.valueOf(id)).child("status_pekerja");
+            myRef.setValue("Non-Aktif");
+        }
+        super.onDestroy();
+    }
 }
