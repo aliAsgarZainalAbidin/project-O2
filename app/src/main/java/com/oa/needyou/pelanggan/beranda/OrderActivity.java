@@ -250,11 +250,12 @@ public class OrderActivity extends AppCompatActivity implements OnMapReadyCallba
             public void onClick(View v) {
                 pekerjaFirebase();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Pekerja").child(String.valueOf(random)).child("status_pekerja");
-                myRef.setValue("Aktif");
+                if (random > 0){
+                    DatabaseReference myRef = database.getReference("Pekerja").child(String.valueOf(random)).child("status_pekerja");
+                    myRef.setValue("Aktif");
+                }
                 sekali_ubah = true;
                 relativ_loading.setVisibility(View.GONE);
-
             }
         });
 
